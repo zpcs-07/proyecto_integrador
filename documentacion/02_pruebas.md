@@ -157,8 +157,8 @@ ni cerrarse
 
 - En el menú escribí abc
 - En el menú escribí 99
-- En el coeficiente escribí hola
-- Entré a la opción 2 sin haber definido nada
+- Al elegir el tipo de punto escribí 0, luego hola, luego 7 y luego 5
+- Aparte, entré a la opción 2 sin haber definido nada
 
 **Resultado esperado:** Un mensaje claro en cada caso y volver a preguntar, nunca un error
 de Python
@@ -167,13 +167,18 @@ de Python
 
 - abc -> Eso no es un numero entero, intenta otra vez
 - 99 -> El numero debe estar entre 1 y 3
-- hola -> Eso no es un numero, intenta otra vez, y lo vuelve a pedir
+- 0 en el tipo -> El numero debe estar entre 1 y 3
+- hola en el tipo -> Eso no es un numero entero, intenta otra vez
+- 7 en el tipo -> El numero debe estar entre 1 y 3
+- 5 en el tipo -> El numero debe estar entre 1 y 3
 - opción 2 sin definir -> Primero define la funcion y el intervalo con la opcion 1
 
 **Estado:** PASA
 
 **Observaciones:** Es la regla R4 En ningún momento salió un traceback ni se cerró el
-programa Después de cada mensaje vuelve al menú y sigue funcionando normal
+programa Después de cada mensaje vuelve a preguntar lo mismo y sigue funcionando normal Se
+ve en evidencias/ejecuciones/validaciones.png, donde después de aguantar los cuatro
+intentos malos acepta el 1 y calcula bien el CP-04
 
 ---
 
@@ -203,26 +208,37 @@ opción 2 calcularía un área negativa sin que yo me enterara
 
 ---
 
-## CP-08 — El punto medio con una recta
+## CP-08 — Los tres tipos de punto con la misma integral
 
-**Objetivo:** Comprobar algo que me llamó la atención: que con tipo medio el resultado da
-clavado desde n chiquita
+**Objetivo:** Correr el mismo ejercicio con los tres tipos de punto y ver que cada uno da
+distinto, para entender cuál se acerca más
 
 **Entradas:**
 
-- f(x) = x + 3, a = -2, b = 3
-- Opción 2, n = 5, tipo medio
+- f(x) = x + 3, a = -2, b = 3, siempre con n = 5
+- Opción 2 tres veces, cambiando el tipo: derecho, izquierdo y medio
 
-**Resultado esperado:** 17.5 exacto, aunque n sea apenas 5
+**Resultado esperado:** El izquierdo por debajo del 17.5, el derecho por encima, y el medio
+en medio de los dos
 
-**Resultado obtenido:** Resultado: 17.5
+**Resultado obtenido:**
+
+- izquierdo -> 15.0, con alturas 1.0, 2.0, 3.0, 4.0 y 5.0
+- derecho -> 20.0, con alturas 2.0, 3.0, 4.0, 5.0 y 6.0
+- medio -> 17.5, con alturas 1.5, 2.5, 3.5, 4.5 y 5.5
 
 **Estado:** PASA
 
-**Observaciones:** Pasa porque mi función es una recta Con el punto medio, lo que le sobra a
-un rectángulo por un lado es justo lo que le falta por el otro, y se cancela Por eso da
-exacto y no hay que subirle la n Con la parábola del CP-03 ya no da exacto, nada más se
-acerca mucho
+**Observaciones:** Lo bonito es que el medio da 17.5 clavado con apenas n = 5, que es el
+mismo número que me costó todo el límite en la libreta Pasa porque mi función es una recta:
+con el punto medio, lo que le sobra a un rectángulo por un lado es justo lo que le falta por
+el otro, y se cancela Con la parábola del CP-03 ya no da exacto, nada más se acerca mucho
+
+También se nota que 15.0 y 20.0 quedan a la misma distancia del 17.5, uno 2.5 abajo y el
+otro 2.5 arriba, y que el promedio de los dos da 17.5 Eso es porque la recta sube parejo
+
+Están en evidencias/ejecuciones/punto_izquierdo.png y punto_medio.png, y el derecho en
+caso_original.png
 
 ---
 
@@ -253,10 +269,49 @@ Ahora no se puede: o defines las dos cosas, o no defines nada
 
 ---
 
+## CP-10 — Una función que va por debajo del eje x
+
+**Objetivo:** Probar la regla R3, que dice que el resultado puede salir negativo cuando la
+curva está abajo del eje, y que eso no es un error
+
+**Entradas:**
+
+- Opción 1, grado 2, coeficientes 1, 0 y -4, o sea f(x) = x^2 - 4
+- Límites a = -2 y b = 2
+- Opción 2, n = 4, tipo medio
+
+**Resultado esperado:** Un número negativo, porque entre -2 y 2 la parábola x^2 - 4 va toda
+por debajo del eje
+
+**Resultado obtenido:**
+
+```
+f(x) = x^2 - 4
+Paso 1 - Amplitud: 4.0
+Paso 2 - Delta x: 1.0
+Rectangulo 1 - x: -1.5 - altura: -1.75 - area: -1.75
+Rectangulo 2 - x: -0.5 - altura: -3.75 - area: -3.75
+Rectangulo 3 - x: 0.5 - altura: -3.75 - area: -3.75
+Rectangulo 4 - x: 1.5 - altura: -1.75 - area: -1.75
+Resultado: -11.0
+```
+
+**Estado:** PASA
+
+**Observaciones:** Las cuatro alturas salen negativas porque f(-1.5), f(-0.5), f(0.5) y
+f(1.5) son todos negativos, y la suma -1.75 - 3.75 - 3.75 - 1.75 da -11 Se comprueba en la
+cabeza Escogí este caso porque es el que demuestra que el programa está calculando la
+integral y no el área geométrica: si fuera el área daría +11
+
+También se ve la simetría, el primer rectángulo vale lo mismo que el último y el segundo lo
+mismo que el tercero, que es lo que uno espera de una parábola centrada en el cero
+
+---
+
 ## Resumen
 
-- Casos ejecutados: 9
-- Pasaron: 9
+- Casos ejecutados: 10
+- Pasaron: 10
 - Fallaron: 0
 
 No tuve que corregir nada en esta etapa El único error que encontré en todo el proyecto fue
@@ -266,5 +321,8 @@ llegar a las pruebas Está contado en documentacion/03_uso_copilot.md
 ## Capturas
 
 - evidencias/ejecuciones/menu_principal.png -> el menú con las 3 opciones
-- evidencias/ejecuciones/caso_original.png -> el CP-01 con los cuatro pasos y el 20.0
-- evidencias/ejecuciones/pruebas_adicionales.png -> las entradas inválidas del CP-06
+- evidencias/ejecuciones/caso_original.png -> el CP-01 completo, con los cuatro pasos de mi procedimiento y el 20.0
+- evidencias/ejecuciones/validaciones.png -> el CP-06 aguantando entradas malas, y el CP-04 con n = 1 dando 30.0
+- evidencias/ejecuciones/punto_izquierdo.png -> el CP-08 con extremo izquierdo dando 15.0
+- evidencias/ejecuciones/punto_medio.png -> el CP-08 con punto medio dando 17.5 exacto
+- evidencias/ejecuciones/area_negativa.png -> el CP-10 con f(x) = x^2 - 4 dando -11.0

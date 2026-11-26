@@ -6,6 +6,9 @@ activado, y metiendo los datos por teclado igual que lo haría cualquiera
 Lo primero que probé fue el ejercicio de mi libreta, porque si eso no cuadra lo demás no
 sirve de nada Las capturas están en evidencias/ejecuciones/
 
+El menú tiene tres opciones: la 1 define la función y el intervalo, la 2 calcula el área y
+la 3 sale Por eso casi todos los casos empiezan igual, con la opción 1
+
 ---
 
 ## CP-01 — El ejercicio original, comprobable a mano
@@ -16,19 +19,34 @@ paso 3 y el paso 4 de mi procedimiento
 **Entradas:**
 
 - Opción 1, grado 1, coeficientes 1 y 3, o sea f(x) = x + 3
-- Opción 3, a = -2, b = 3
-- Opción 5, n = 5, tipo derecho
+- Límites a = -2 y b = 3
+- Opción 2, n = 5, tipo derecho
 
 **Resultado esperado:** 20.0, porque con n = 5 la fórmula de mi suma da
 S(5) = 5 + 25(5+1)/(2·5) = 20
 
-**Resultado obtenido:** Resultado: 20.0
+**Resultado obtenido:**
+
+```
+f(x) = x + 3
+Intervalo definido: -2.0 a 3.0
+Paso 1 - Amplitud: 5.0
+Paso 2 - Delta x: 1.0
+Rectangulo 1 - x: -1.0 - altura: 2.0 - area: 2.0
+Rectangulo 2 - x: 0.0 - altura: 3.0 - area: 3.0
+Rectangulo 3 - x: 1.0 - altura: 4.0 - area: 4.0
+Rectangulo 4 - x: 2.0 - altura: 5.0 - area: 5.0
+Rectangulo 5 - x: 3.0 - altura: 6.0 - area: 6.0
+Resultado: 20.0
+```
 
 **Estado:** PASA
 
-**Observaciones:** Con la opción 6 revisé los cinco rectángulos uno por uno y dan las
-alturas 2, 3, 4, 5 y 6, que son exactamente las que salen de evaluar f(x_i) = 1 + (5/n)i
-para i de 1 a 5 La suma 2+3+4+5+6 = 20 cuadra Este es el caso que más me importaba
+**Observaciones:** Esta es la prueba que más me importaba La amplitud 5 es mi paso 1, el
+delta x de 1 es mi paso 2, las coordenadas -1, 0, 1, 2 y 3 son mi paso 3, y las alturas 2,
+3, 4, 5 y 6 son mi paso 4, o sea f(x_i) = 1 + (5/n)i evaluada para i de 1 a 5 La suma
+2+3+4+5+6 = 20 cuadra con la fórmula Los cuatro pasos de mi libreta salen en una sola
+pantalla
 
 ---
 
@@ -40,7 +58,7 @@ tomando el límite
 **Entradas:**
 
 - La misma función f(x) = x + 3 y el mismo intervalo [-2, 3]
-- Opción 5 cuatro veces, con n = 10, luego 100, luego 1000 y luego 10000, siempre tipo derecho
+- Opción 2 cuatro veces, con n = 10, luego 100, luego 1000 y luego 10000, siempre tipo derecho
 
 **Resultado esperado:** Que los números bajen acercándose a 17.5 sin pasarse
 
@@ -68,8 +86,8 @@ también da bien
 **Entradas:**
 
 - Opción 1, grado 2, coeficientes 1, 0 y 0, o sea f(x) = x^2
-- Opción 3, a = 0, b = 1
-- Opción 5, n = 1000, tipo medio
+- Límites a = 0 y b = 1
+- Opción 2, n = 1000, tipo medio
 
 **Resultado esperado:** Algo muy cerca de 0.333333, porque el área bajo x^2 de 0 a 1 es 1/3
 
@@ -79,7 +97,7 @@ también da bien
 
 **Observaciones:** Lo escogí porque es un resultado que me sé de memoria y me deja ver si la
 clase sirve para cualquier polinomio y no nada más para el mío También comprueba que
-a_texto escriba bien las potencias, porque imprimió f(x) = x^2
+a_texto escriba bien las potencias, porque imprimió f(x) = x^2 y no f(x) = 1x^2 + 0x + 0
 
 ---
 
@@ -91,7 +109,7 @@ rectángulo que cubre todo el intervalo
 **Entradas:**
 
 - f(x) = x + 3, a = -2, b = 3
-- Opción 5, n = 1, tipo derecho
+- Opción 2, n = 1, tipo derecho
 
 **Resultado esperado:** 30.0, porque con un solo rectángulo delta x vale 5, la única
 coordenada es x_1 = -2 + 5 = 3, su altura es f(3) = 6, y 6 por 5 da 30
@@ -114,8 +132,8 @@ rectángulos de ancho cero
 **Entradas:**
 
 - f(x) = x + 3
-- Opción 3, a = 2, b = 2
-- Opción 5, n = 5, tipo derecho
+- Opción 1 con a = 2 y b = 2
+- Opción 2, n = 5, tipo derecho
 
 **Resultado esperado:** 0, que es la regla R2
 
@@ -140,9 +158,7 @@ ni cerrarse
 - En el menú escribí abc
 - En el menú escribí 99
 - En el coeficiente escribí hola
-- Entré a la opción 2 sin haber definido función
-- Entré a la opción 5 sin haber definido intervalo
-- Entré a la opción 7 sin haber calculado nada
+- Entré a la opción 2 sin haber definido nada
 
 **Resultado esperado:** Un mensaje claro en cada caso y volver a preguntar, nunca un error
 de Python
@@ -150,11 +166,9 @@ de Python
 **Resultado obtenido:**
 
 - abc -> Eso no es un numero entero, intenta otra vez
-- 99 -> El numero debe estar entre 1 y 8
+- 99 -> El numero debe estar entre 1 y 3
 - hola -> Eso no es un numero, intenta otra vez, y lo vuelve a pedir
-- opción 2 sin función -> Primero define una funcion con la opcion 1
-- opción 5 sin intervalo -> Primero define un intervalo valido con la opcion 3
-- opción 7 sin cálculos -> Todavia no has calculado nada
+- opción 2 sin definir -> Primero define la funcion y el intervalo con la opcion 1
 
 **Estado:** PASA
 
@@ -170,23 +184,22 @@ calcula
 
 **Entradas:**
 
-- f(x) = x + 3
-- Opción 3, a = 5, b = 1
-- Luego opción 4, para ver si de verdad quedó sin intervalo
+- Opción 1 con f(x) = 7, a = 5 y b = 1
+- Luego opción 2, para ver si de verdad quedó sin intervalo
 
-**Resultado esperado:** Que rechace el intervalo y que la opción 4 siga diciendo que no hay
-intervalo definido
+**Resultado esperado:** Que rechace el intervalo y que la opción 2 siga diciendo que no hay
+nada definido
 
 **Resultado obtenido:**
 
 - Al definir el intervalo -> a no puede ser mayor que b
-- Al entrar a la opción 4 -> Primero define un intervalo valido con la opcion 3
+- Al entrar a la opción 2 -> Primero define la funcion y el intervalo con la opcion 1
 
 **Estado:** PASA
 
 **Observaciones:** Lo importante aquí es la segunda parte No basta con que avise, tiene que
 dejar el objeto integral sin crear Si nada más avisara y guardara el intervalo al revés, la
-opción 5 calcularía un área negativa sin que yo me enterara
+opción 2 calcularía un área negativa sin que yo me enterara
 
 ---
 
@@ -198,7 +211,7 @@ clavado desde n chiquita
 **Entradas:**
 
 - f(x) = x + 3, a = -2, b = 3
-- Opción 5, n = 5, tipo medio
+- Opción 2, n = 5, tipo medio
 
 **Resultado esperado:** 17.5 exacto, aunque n sea apenas 5
 
@@ -213,33 +226,30 @@ acerca mucho
 
 ---
 
-## CP-09 — Que el intervalo viejo no se quede pegado
+## CP-09 — Cambiar de función sin que se quede pegado el intervalo viejo
 
-**Objetivo:** Probar que si cambio la función, el intervalo que ya tenía se borra
+**Objetivo:** Ver que cuando defino otra función, el intervalo también se reemplaza y no se
+queda el de antes
 
 **Entradas:**
 
-- Defino f(x) = x + 3, intervalo [-2, 3], calculo con n = 5
-- Vuelvo a la opción 1 y defino f(x) = 2
-- Entro directo a la opción 5 sin pasar por la opción 3
-- Después defino el intervalo [0, 1] y calculo con n = 10
-- Reviso el historial con la opción 7
+- Opción 1 con f(x) = x^2 en [0, 1], y calculo con n = 1000 tipo medio
+- Opción 1 otra vez con f(x) = x + 3 en [-2, 3], y calculo con n = 5 tipo derecho
 
-**Resultado esperado:** Que la opción 5 me mande a definir intervalo, y que el historial
-guarde cada cálculo con los límites que de verdad le tocaban
+**Resultado esperado:** 0.333333 el primero y 20.0 el segundo, cada uno con su propio
+intervalo
 
 **Resultado obtenido:**
 
-- Opción 5 después de cambiar la función -> Primero define un intervalo valido con la opcion 3
-- Historial -> f(x) = x + 3 con [-2.0, 3.0] y n = 5 dio 20.0, y f(x) = 2 con [0.0, 1.0] y
-  n = 10 dio 2.0
+- f(x) = x^2 con intervalo 0.0 a 1.0 -> Resultado: 0.333333
+- f(x) = x + 3 con intervalo -2.0 a 3.0 -> Resultado: 20.0
 
 **Estado:** PASA
 
-**Observaciones:** Esto no venía en mi especificación, lo encontré probando Si el intervalo
-se quedara pegado, el programa integraría la función nueva sobre el intervalo viejo y el
-número saldría mal sin ningún aviso El historial sí guardó bien los límites de cada uno por
-separado
+**Observaciones:** Este riesgo lo quité juntando la función y el intervalo en una sola
+opción Antes estaban separados y se podía cambiar la función dejando el intervalo viejo, y
+el programa integraba la función nueva sobre un intervalo que ya no le tocaba, sin avisar
+Ahora no se puede: o defines las dos cosas, o no defines nada
 
 ---
 
@@ -255,6 +265,6 @@ llegar a las pruebas Está contado en documentacion/03_uso_copilot.md
 
 ## Capturas
 
-- evidencias/ejecuciones/menu_principal.png -> el menú con las 8 opciones
-- evidencias/ejecuciones/caso_original.png -> el CP-01 dando 20.0
+- evidencias/ejecuciones/menu_principal.png -> el menú con las 3 opciones
+- evidencias/ejecuciones/caso_original.png -> el CP-01 con los cuatro pasos y el 20.0
 - evidencias/ejecuciones/pruebas_adicionales.png -> las entradas inválidas del CP-06

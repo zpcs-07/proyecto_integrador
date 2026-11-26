@@ -31,9 +31,9 @@ n se vaya al infinito:
 ### Por qué este problema sirve para el proyecto
 
 Porque se parte solo en pedazos que no tienen nada que ver entre sí, y de ahí salen las
-clases: la función nada más necesita saber evaluarse en un punto, la integral necesita los
-límites y el número de rectángulos, y el historial solo guarda lo que fui calculando Cada
-una tiene su propia responsabilidad
+clases: la función nada más necesita saber evaluarse en un punto, y la integral necesita los
+límites y el número de rectángulos Cada una tiene su propia responsabilidad y ninguna se
+mete con la otra
 
 Para armar la suma hay que recorrer los n rectángulos uno por uno, o sea un ciclo, y los
 coeficientes de la función se guardan en una lista También hay varias cosas que validar
@@ -102,7 +102,6 @@ Y el procedimiento que seguí fueron 4 pasos:
 - El Δx para la n que elegí
 - La suma de Riemann S(n) con el valor del área aproximada
 - El detalle de los primeros rectángulos (su x_i y su f(x_i)) para poder comprobarlo a mano
-- El historial de todo lo que calculé en la sesión
 
 ## 6. Ejemplo original resuelto
 
@@ -169,14 +168,15 @@ alto y conforme crece se va pegando al 17.5, que es justo lo que dice el límite
 
 Lo que va a hacer el programa:
 
-1. Pedir una función polinomial (grado y coeficientes) y guardarla
+1. Pedir una función polinomial (grado y coeficientes) y el intervalo [a, b], y validarlos
 2. Mostrar la función escrita de forma legible
-3. Pedir y validar el intervalo [a, b]
-4. Calcular la amplitud A y el Δx para una n dada
-5. Calcular la suma de Riemann con extremo derecho, izquierdo o punto medio
-6. Mostrar el detalle de los rectángulos para poder comprobarlo a mano
-7. Guardar cada cálculo en un historial y poder consultarlo
-8. Salir de forma ordenada
+3. Calcular la amplitud A y el Δx para la n que se pida
+4. Calcular la suma de Riemann con extremo derecho, izquierdo o punto medio
+5. Mostrar el detalle de los primeros rectángulos para poder comprobarlo a mano
+6. Salir de forma ordenada
+
+El menú se queda en tres opciones a propósito: definir, calcular y salir Todo lo demás se
+imprime dentro del cálculo, en el mismo orden de los cuatro pasos de mi procedimiento
 
 Lo que **no** va a hacer:
 
@@ -191,10 +191,10 @@ Lo que **no** va a hacer:
 - Entradas, procesos y salidas identificables -> Sí, están en las secciones 3, 4 y 5
 - Reglas, validaciones o decisiones -> Sí, las reglas R1 a R7
 - Viable en consola -> Sí, todo es entrada de números por teclado y salida de texto
-- Al menos dos clases con responsabilidades distintas -> Sí, van tres: FuncionPolinomial representa y evalúa la función, IntegralDefinida hace las sumas de Riemann, e HistorialCalculos guarda y consulta los resultados
+- Al menos dos clases con responsabilidades distintas -> Sí, van dos: FuncionPolinomial representa y evalúa la función, e IntegralDefinida parte el intervalo y hace las sumas de Riemann
 - Ejemplo original verificable -> Sí, el 17.5 de la libreta
 - Variables, operaciones, condiciones, ciclos -> Sí, ciclos para evaluar el polinomio y para acumular la suma de Riemann, y condiciones en todas las validaciones
-- Al menos una lista -> Sí, dos: la lista de coeficientes de la función y la lista de cálculos del historial
+- Al menos una lista -> Sí, dos: la lista de coeficientes con la que se arma el polinomio, y la lista de renglones que devuelve detalle_rectangulos, donde cada renglón es a su vez una lista con el número de rectángulo, su x, su altura y su área
 - main.py y módulos de clases separados -> Sí, main.py con el menú y el paquete clases con un archivo por clase
 
 ## 9. Nota sobre el diseño

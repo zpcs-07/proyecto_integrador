@@ -13,14 +13,16 @@ calcular y salir
 ## 2. El menú
 
 ```
-==========================================
   AREA BAJO LA CURVA - SUMAS DE RIEMANN
-==========================================
 1. Definir la funcion y el intervalo
 2. Calcular el area
 3. Salir
-==========================================
 ```
+
+Lo dejé sin marcos de signos de igual a propósito El menú se reimprime cada vuelta del
+ciclo, y con los marcos ocupaba 7 renglones cada vez En cuatro vueltas eran 28 renglones de
+puro adorno, y las capturas de pantalla no alcanzaban a mostrar el cálculo completo Así
+ocupa 4 y cabe todo
 
 ## 3. Objetos que se crean
 

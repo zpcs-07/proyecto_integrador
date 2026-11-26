@@ -3,13 +3,11 @@ from clases.integral_definida import IntegralDefinida
 
 
 def mostrar_menu():
-    print("==========================================")
     print("  AREA BAJO LA CURVA - SUMAS DE RIEMANN")
-    print("==========================================")
     print("1. Definir la funcion y el intervalo")
     print("2. Calcular el area")
     print("3. Salir")
-    print("==========================================")
+
 
 
 def pedir_entero(mensaje, minimo, maximo):

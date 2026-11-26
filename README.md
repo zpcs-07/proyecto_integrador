@@ -1,6 +1,6 @@
 # Área bajo la curva con sumas de Riemann
 
-Aplicación de consola en Python que calcula el área bajo la curva de una función polinomial
+Programa de consola en Python que calcula el área bajo la curva de una función polinomial
 usando la definición de integral definida, o sea el límite de una suma de Riemann
 
 Proyecto Integrador de Programación II
@@ -11,10 +11,10 @@ Proyecto Integrador de Programación II
 
 Es un ejercicio que resolví en la libreta cuando vimos integrales definidas Había que
 calcular la integral de -2 a 3 de (x + 3) dx partiendo el intervalo en n rectángulos,
-sumarlos todos y tomar el límite cuando n tiende a infinito El resultado fue 35/2, o sea
+sumándolos todos y tomando el límite cuando n tiende a infinito El resultado fue 35/2, o sea
 17.5 u²
 
-La foto del ejercicio original está en
+La foto del ejercicio está en
 evidencias/problema_original/ejercicio_original_integral_definida.jpg
 
 ## Objetivo
@@ -29,13 +29,12 @@ polinomio, cualquier intervalo y cualquier cantidad de rectángulos:
 
 ## Qué hace
 
-- Pide una función polinomial de hasta grado 10 y el intervalo de integración
-- Escribe la función de forma legible, por ejemplo f(x) = x + 3
-- Calcula la amplitud y el Δx y los muestra nombrando el paso del que vienen
-- Calcula la suma de Riemann con extremo derecho, extremo izquierdo o punto medio
-- Muestra los primeros 5 rectángulos con su coordenada, su altura y su área, para poder
-  comprobar el resultado a mano
-- Valida todo lo que se escribe, así que no truena aunque le metas texto donde van números
+- Pide un polinomio de hasta grado 10 y el intervalo
+- Escribe la función de forma legible, tipo f(x) = x + 3
+- Calcula la amplitud y el Δx, diciendo de qué paso viene cada uno
+- Calcula la suma de Riemann con punto derecho, izquierdo o medio
+- Muestra los primeros 5 rectángulos con su x, su altura y su área, para comprobar a mano
+- Valida todo, así que no truena aunque le metas texto donde van números
 
 Lo que no hace: funciones que no sean polinomios, integrales impropias ni gráficas
 
@@ -47,7 +46,7 @@ Vive en clases/funcion_polinomial.py
 
 Representa la función y sabe evaluarse en un punto No sabe nada de integrales
 
-- Atributos: coeficientes (una lista, de mayor a menor potencia) y grado
+- Atributos: coeficientes, que es una lista de mayor a menor potencia, y grado
 - Métodos: evaluar(x) y a_texto()
 
 ### IntegralDefinida
@@ -61,7 +60,7 @@ cuando necesita la altura de un rectángulo se la pide a él
 - Métodos: calcular_amplitud(), calcular_delta_x(n), calcular_coordenada(i, n, tipo),
   suma_riemann(n, tipo), detalle_rectangulos(n, tipo, cuantos) y es_intervalo_valido()
 
-Las especificaciones completas de las dos están en la carpeta especificaciones/
+Las especificaciones completas están en la carpeta especificaciones/
 
 ## Requisitos
 
@@ -115,13 +114,12 @@ Rectangulo 5 - x: 3.0 - altura: 6.0 - area: 6.0
 Resultado: 20.0
 ```
 
-Las alturas 2, 3, 4, 5 y 6 son f(x_i) = 1 + (5/n)i evaluada para i de 1 a 5, igual que en la
-libreta, y 2+3+4+5+6 da 20
+Las alturas 2, 3, 4, 5 y 6 son f(x_i) = 1 + (5/n)i para i de 1 a 5, igual que en la libreta,
+y 2+3+4+5+6 da 20
 
-Si se sube la n el resultado se acerca al 17.5 del ejercicio original: con n = 100 da 17.625
-y con n = 10000 da 17.50125 Nunca va a dar 17.5 clavado con el extremo derecho porque el
-límite es cuando n tiende a infinito, pero con el punto medio sí da exacto desde n = 5
-porque la función es una recta
+Si se sube la n el resultado se acerca al 17.5: con n = 100 da 17.625 y con n = 10000 da
+17.50125 Nunca va a dar 17.5 clavado con el extremo derecho, porque el límite es cuando n
+tiende a infinito Con el punto medio sí da exacto desde n = 5, porque la función es una recta
 
 ## Pruebas
 
@@ -130,7 +128,7 @@ obtenido y las observaciones Las capturas están en evidencias/ejecuciones/
 
 ## Documentación
 
-- documentacion/01_analisis_problema.md -> el análisis del problema, de dónde salió y qué tiene que hacer el programa
+- documentacion/01_analisis_problema.md -> el análisis del problema y qué tiene que hacer el programa
 - documentacion/02_pruebas.md -> los 10 casos de prueba
 - documentacion/03_uso_copilot.md -> cómo usé GitHub Copilot y qué le revisé
 - especificaciones/ -> un archivo por clase más el del programa principal

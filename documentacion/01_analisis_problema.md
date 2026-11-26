@@ -2,26 +2,23 @@
 
 ## 1. Nombre del problema y asignatura
 
-**Problema:** Cálculo del área bajo la curva usando la integral definida, resuelta como
-límite de una suma de Riemann
+**Problema:** Área bajo la curva con la integral definida, resuelta como límite de una suma
+de Riemann
 
-**Asignatura donde lo estudié:** Cálculo Lo vimos cuando entramos al tema de integrales
-definidas, y la idea era entender que la integral es una suma de rectangulitos y que entre
-más rectángulos metes, más se acerca al área verdadera
+**Asignatura donde lo estudié:** Cálculo
 
-La evidencia del ejercicio original está en
-evidencias/problema_original/ejercicio_original_integral_definida.jpg
+Lo vimos cuando entramos a integrales definidas La idea era entender que la integral es una
+suma de rectangulitos, y que entre más rectángulos metes, más se acerca al área de verdad
 
 ## 2. Descripción, justificación y planteamiento original
 
 ### De qué va el problema
 
-Tengo una función f(x) y un intervalo [a, b] Quiero saber cuánta área hay entre la curva,
-el eje x y las dos rectas verticales que pasan por a y por b
+Tengo una función y un intervalo Quiero saber cuánta área hay entre la curva y el eje x,
+entre esos dos límites
 
-El método que usé en Cálculo es partir el intervalo en n pedazos iguales, armar un
-rectángulo sobre cada pedazo, sumar todas las áreas y después hacer que n se vaya al
-infinito:
+La forma en que lo vimos es esta: parto el intervalo en n pedazos iguales, pongo un
+rectángulo sobre cada pedazo, sumo todas las áreas, y luego hago que n se vaya al infinito
 
 ```
 Área = lim (n→∞) Σ (i=1 hasta n) f(x_i) · Δx
@@ -29,20 +26,22 @@ infinito:
 
 ### Por qué este problema sirve para el proyecto
 
-Porque se parte en dos responsabilidades que no se tocan, y de ahí salen las dos clases: la
-función nada más necesita saber evaluarse en un punto, y la integral necesita los límites y
-el número de rectángulos Además hay que recorrer los n rectángulos uno por uno, o sea un
-ciclo, los coeficientes se guardan en una lista, y hay varias cosas que validar, o sea
-condiciones No se reduce a pedir dos números y hacer una operación
+Porque se parte en dos cosas que no se tocan, y de ahí salen las dos clases La función solo
+necesita saber evaluarse en un punto La integral necesita los límites y en cuántos
+rectángulos partir
+
+Y de paso usa todo lo que pide el proyecto: un ciclo para recorrer los n rectángulos, una
+lista para guardar los coeficientes, y condiciones para las validaciones No es nada más
+pedir dos números y hacer una cuenta
 
 ### Planteamiento original (tal cual lo hice en la libreta)
 
-> Ejemplos integrales definidas
->
-> Calcular la integral desde -2 hasta 3 de (x + 3) dx usando la definición de integral
-> definida como límite de una suma de Riemann
+Ejemplos integrales definidas
 
-Y el procedimiento que seguí fueron 4 pasos:
+Calcular la integral desde -2 hasta 3 de (x + 3) dx usando la definición de integral
+definida como límite de una suma de Riemann
+
+Estos fueron los 4 pasos que seguí:
 
 1. Definir la amplitud del intervalo: A = x_f − x_i
 2. Escoger el tamaño de los subintervalos: Δx = A / n
@@ -51,56 +50,54 @@ Y el procedimiento que seguí fueron 4 pasos:
 
 ## 3. Entradas
 
-- grado -> int -> de 0 a 10 -> Grado del polinomio que voy a integrar
-- coeficientes -> list[float] -> deben ser grado + 1 valores numéricos -> Los coeficientes de la función, del término de mayor potencia al término independiente
-- limite_inferior (a) -> float -> cualquier número real -> Dónde empieza el intervalo
-- limite_superior (b) -> float -> cualquier número real -> Dónde termina el intervalo
-- n -> int -> mayor o igual a 1 -> En cuántos rectángulos parto el intervalo
-- tipo_punto -> str -> derecho, izquierdo o medio -> Qué punto de cada subintervalo uso para la altura del rectángulo
-- opcion_menu -> int -> una de las opciones mostradas -> Lo que elijo en el menú
+- grado -> int -> de 0 a 10 -> El grado del polinomio
+- coeficientes -> list[float] -> grado + 1 números -> Los coeficientes, del término más grande al independiente
+- limite_inferior (a) -> float -> cualquier real -> Dónde empieza el intervalo
+- limite_superior (b) -> float -> cualquier real -> Dónde termina el intervalo
+- n -> int -> 1 o más -> En cuántos rectángulos parto el intervalo
+- tipo_punto -> str -> derecho, izquierdo o medio -> Qué punto del rectángulo uso para la altura
+- opcion_menu -> int -> 1, 2 o 3 -> Lo que elijo en el menú
 
 ## 4. Procesos: fórmulas, reglas y decisiones
 
 ### Las fórmulas
 
-1. **Amplitud del intervalo:** A = b − a, es el paso 1 de mi procedimiento
-2. **Tamaño del subintervalo:** Δx = A / n, es el paso 2
-3. **Coordenada del punto i**, que es el paso 3:
-   - extremo derecho: x_i = a + i·Δx, con i de 1 a n (el que usé en la libreta)
-   - extremo izquierdo: x_i = a + (i−1)·Δx
-   - punto medio: x_i = a + (i − 0.5)·Δx
-4. **Evaluar la función:** f(x) = c_n·x^n + ... + c_1·x + c_0, es el paso 4
+1. **Amplitud:** A = b − a, es mi paso 1
+2. **Tamaño del subintervalo:** Δx = A / n, es mi paso 2
+3. **Coordenada del punto i**, mi paso 3:
+   - derecho: x_i = a + i·Δx, con i de 1 a n (el que usé en la libreta)
+   - izquierdo: x_i = a + (i−1)·Δx
+   - medio: x_i = a + (i − 0.5)·Δx
+4. **Evaluar la función:** f(x) = c_n·x^n + ... + c_1·x + c_0, es mi paso 4
 5. **Suma de Riemann:** S(n) = Σ (i=1 hasta n) f(x_i) · Δx
 
-### Reglas y decisiones que el programa debe respetar
+### Reglas que el programa debe respetar
 
-- **R1** Si a es mayor que b, aviso y no calculo hasta que lo corrija El orden importa porque
-  el signo del resultado cambia
-- **R2** Si a es igual a b, el resultado es 0 directo, sin hacer ninguna suma
+- **R1** Si a es mayor que b, aviso y no calculo El orden importa porque cambia el signo
+- **R2** Si a es igual a b, el resultado es 0 directo, sin sumar nada
 - **R3** El resultado puede salir negativo si la curva va por debajo del eje x Eso no es un
   error, es lo que significa la integral
-- **R4** Si el usuario escribe algo que no es número, el programa lo rechaza y vuelve a
-  preguntar Nunca debe tronar con un error de Python
-- **R5** n tiene que ser entero y mayor o igual a 1
-- **R6** No se puede calcular nada si todavía no hay función ni intervalo definidos El menú
-  avisa en lugar de dejar que explote
-- **R7** La lista de coeficientes tiene que tener exactamente grado + 1 elementos
+- **R4** Si escriben algo que no es número, lo rechazo y vuelvo a preguntar El programa nunca
+  debe tronar
+- **R5** n tiene que ser entero y de 1 para arriba
+- **R6** No se calcula nada si todavía no hay función ni intervalo El menú avisa
+- **R7** Los coeficientes tienen que ser exactamente grado + 1
 
 ## 5. Salidas esperadas
 
 - La función escrita bonita, tipo f(x) = x + 3
-- La amplitud A del intervalo
+- La amplitud A
 - El Δx para la n que elegí
-- La suma de Riemann S(n) con el valor del área aproximada
-- El detalle de los primeros rectángulos (su x_i y su f(x_i)) para poder comprobarlo a mano
+- La suma de Riemann S(n), que es el área aproximada
+- Los primeros rectángulos con su x y su altura, para comprobar a mano
 
 ## 6. Ejemplo original resuelto
 
-Este es el ejercicio de la foto, es el que tiene que reproducir el programa
+Este es el ejercicio de la foto, el que tiene que reproducir el programa
 
 **Integral:** desde -2 hasta 3 de (x + 3) dx
 
-**Paso 1 — amplitud del intervalo:**
+**Paso 1 — amplitud:**
 
 ```
 A = x_f − x_i = 3 − (−2) = 5
@@ -141,7 +138,7 @@ f(x_i) = (−2 + (5/n)i) + 3 = 1 + (5/n)i
      = lim (n→∞) [ 5 + 25/2 + 25/(2n) ]
 ```
 
-El término 25/(2n) se va a 0 cuando n tiende a infinito, entonces queda:
+El 25/(2n) se va a 0 cuando n tiende a infinito, y queda:
 
 ```
 Área = 5 + 25/2 = 35/2 = 17.5 u²
@@ -149,50 +146,49 @@ El término 25/(2n) se va a 0 cuando n tiende a infinito, entonces queda:
 
 **Resultado conocido: 35/2 = 17.5 u²**
 
-Como mi suma usa el extremo derecho, el programa con esta misma función tiene que acercarse a
-17.5 conforme le suba la n, que es justo lo que dice el límite
+Mi suma usa el extremo derecho, así que el programa tiene que irse acercando a 17.5 conforme
+le suba la n Eso es justo lo que dice el límite
 
 ## 7. Alcance de la aplicación
 
-Lo que va a hacer el programa:
+Lo que sí hace:
 
-1. Pedir una función polinomial (grado y coeficientes) y el intervalo [a, b], y validarlos
-2. Mostrar la función escrita de forma legible
-3. Calcular la amplitud A y el Δx para la n que se pida
-4. Calcular la suma de Riemann con extremo derecho, izquierdo o punto medio
-5. Mostrar el detalle de los primeros rectángulos para poder comprobarlo a mano
-6. Salir de forma ordenada
+1. Pide una función y un intervalo, y los valida
+2. Escribe la función de forma legible
+3. Saca la amplitud y el Δx
+4. Calcula la suma de Riemann con punto derecho, izquierdo o medio
+5. Muestra los primeros rectángulos para comprobar a mano
+6. Sale de forma ordenada
 
-El menú se queda en tres opciones a propósito: definir, calcular y salir Todo lo demás se
-imprime dentro del cálculo, en el orden de los cuatro pasos de mi procedimiento
+El menú se queda en tres opciones: definir, calcular y salir Todo lo demás se imprime dentro
+del cálculo, en el orden de mis cuatro pasos
 
-Lo que **no** va a hacer:
+Lo que **no** hace:
 
-- Funciones que no sean polinomios (nada de seno, coseno, exponenciales o fracciones con x
-  abajo)
+- Funciones que no sean polinomios, o sea nada de senos, cosenos ni exponenciales
 - Integrales impropias o con límites infinitos
-- Gráficas, porque es aplicación de consola
+- Gráficas, porque es de consola
 
 ## 8. Comprobación de que cumple los requisitos técnicos
 
-- Problema de otra materia -> Sí, es de Cálculo, y tengo la foto de la libreta como evidencia
-- Entradas, procesos y salidas identificables -> Sí, están en las secciones 3, 4 y 5
-- Reglas, validaciones o decisiones -> Sí, las reglas R1 a R7
-- Viable en consola -> Sí, todo es entrada de números por teclado y salida de texto
-- Al menos dos clases con responsabilidades distintas -> Sí, FuncionPolinomial representa y evalúa la función, e IntegralDefinida parte el intervalo y hace las sumas
-- Ejemplo original verificable -> Sí, el 17.5 de la libreta
-- Variables, operaciones, condiciones, ciclos -> Sí, ciclos para evaluar el polinomio y para acumular la suma, y condiciones en todas las validaciones
-- Al menos una lista -> Sí, dos: la de coeficientes y la que devuelve detalle_rectangulos, donde cada renglón es a su vez una lista
-- main.py y módulos de clases separados -> Sí, main.py con el menú y el paquete clases con un archivo por clase
+- Problema de otra materia -> Sí, de Cálculo, y tengo la foto de la libreta
+- Entradas, procesos y salidas -> Sí, en las secciones 3, 4 y 5
+- Reglas y validaciones -> Sí, las reglas R1 a R7
+- Viable en consola -> Sí, todo es teclado y texto
+- Dos clases con responsabilidades distintas -> Sí, FuncionPolinomial evalúa la función e IntegralDefinida parte el intervalo y suma
+- Ejemplo verificable -> Sí, el 17.5 de la libreta
+- Variables, operaciones, condiciones y ciclos -> Sí, ciclos para evaluar y para sumar, y condiciones en las validaciones
+- Al menos una lista -> Sí, dos: la de coeficientes y la que devuelve detalle_rectangulos
+- main.py y clases separados -> Sí, main.py con el menú y la carpeta clases con un archivo por clase
 
 ## 9. Nota sobre el diseño
 
-Los 4 pasos de mi libreta se traducen casi uno a uno en métodos:
+Mis 4 pasos se convierten casi uno a uno en métodos:
 
-- Paso 1, definir la amplitud A = x_f − x_i -> calcular_amplitud()
-- Paso 2, escoger Δx = A/n -> calcular_delta_x(n)
-- Paso 3, establecer x_i = x_0 + i·Δx -> calcular_coordenada(i, n, tipo)
-- Paso 4, expresar f(x) en términos de x_i -> FuncionPolinomial.evaluar(x)
+- Paso 1, la amplitud -> calcular_amplitud()
+- Paso 2, el Δx -> calcular_delta_x(n)
+- Paso 3, la coordenada x_i -> calcular_coordenada(i, n, tipo)
+- Paso 4, evaluar f(x_i) -> FuncionPolinomial.evaluar(x)
 - Armar la suma -> suma_riemann(n, tipo)
 
-Así cada método tiene un porqué claro y no es código inventado nada más para rellenar
+Así cada método tiene un porqué y no es código puesto nada más para rellenar

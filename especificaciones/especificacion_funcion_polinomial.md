@@ -44,6 +44,8 @@ grado = 2
 
 1. Revisa que coeficientes sea una lista y que no esté vacía Si está mal, lanza ValueError
 2. Revisa que todos los elementos sean int o float Si alguno no lo es, lanza ValueError
+   Los booleanos tampoco se aceptan, aunque en Python True sea un int por dentro Si dejara
+   pasar True, el polinomio se evaluaría como si valiera 1 y nadie se daría cuenta
 3. Guarda la lista en self.coeficientes
 4. Calcula self.grado como len(self.coeficientes) - 1
 
@@ -105,9 +107,16 @@ devolver "f(x) = " mas lo unido
 
 **Resultado:** una cadena de texto
 
-**Validaciones:** Si todos los coeficientes son 0, devuelve f(x) = 0
+**Validaciones:**
 
-**Comprobación:** con [1, 3] debe dar f(x) = x + 3, y con [2, -3, 1] debe dar
+- Si todos los coeficientes son 0, devuelve f(x) = 0
+- Si un coeficiente viene como float pero su valor es entero, se escribe sin el .0, o sea
+  que 3.0 se escribe 3 Esto importa porque main.py pide los coeficientes con pedir_decimal
+  y siempre llegan como float, y la función se tiene que ver igual que en mi libreta
+- Los coeficientes que sí tienen decimales se escriben completos, como 2.5
+
+**Comprobación:** con [1, 3] debe dar f(x) = x + 3, con [1.0, 3.0] también debe dar
+f(x) = x + 3, con [2.5, 1.0] debe dar f(x) = 2.5x + 1, y con [2, -3, 1] debe dar
 f(x) = 2x^2 - 3x + 1
 
 ## 5. Reglas que no se pueden cambiar

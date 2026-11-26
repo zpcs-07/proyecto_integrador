@@ -11,10 +11,9 @@ pasos que usé en la libreta
 
 **Responsabilidad:** Esta clase sabe del intervalo y de cómo partirlo en rectángulos No sabe
 cómo se evalúa la función, para eso le pide ayuda al objeto FuncionPolinomial que trae
-guardado Tampoco guarda historial ni habla con el usuario
+guardado Tampoco habla con el usuario
 
-Esta es la clase principal del proyecto Cada método sale directo de un paso del
-procedimiento:
+Cada método sale directo de un paso del procedimiento:
 
 - Paso 1 definir la amplitud -> calcular_amplitud()
 - Paso 2 escoger el tamaño de los subintervalos -> calcular_delta_x(n)
@@ -28,8 +27,8 @@ procedimiento:
 - limite_inferior -> float -> El valor de a, donde empieza el intervalo -> Se recibe en el constructor
 - limite_superior -> float -> El valor de b, donde termina el intervalo -> Se recibe en el constructor
 
-Aquí hay algo que quiero poder explicar: el atributo funcion no es un número ni un texto, es
-**otro objeto** Eso es lo que hace que las dos clases colaboren
+El atributo funcion no es un número ni un texto, es **otro objeto** Eso es lo que hace que
+las dos clases colaboren
 
 ## 3. Constructor __init__
 
@@ -41,9 +40,8 @@ Aquí hay algo que quiero poder explicar: el atributo funcion no es un número n
 2. Revisa que los dos límites sean números Si no, lanza TypeError
 3. Guarda los tres en self.funcion, self.limite_inferior y self.limite_superior
 
-**Qué no hace:** No revisa si a es mayor que b El objeto se puede crear igual, y quien
-pregunta si el intervalo sirve es el método es_intervalo_valido() Lo hice así porque si el
-constructor truena, el usuario pierde la función que ya había definido
+**Qué no hace:** No revisa si a es mayor que b De eso se encarga es_intervalo_valido(), así
+que si el intervalo está al revés el objeto se crea igual y nadie pierde lo que ya escribió
 
 ## 4. Métodos
 
@@ -118,8 +116,8 @@ si no:
 **Validaciones:** tipo tiene que ser uno de los tres textos permitidos, e i tiene que estar
 entre 1 y n
 
-**Comprobación:** con a = -2, n = 5 y tipo derecho, para i = 1 debe dar -1, porque
--2 + 1(1) = -1 Es exactamente la fórmula x_i = -2 + (5/n)i de mi libreta
+**Comprobación:** con a = -2, n = 5 y tipo derecho, para i = 1 debe dar -1 Es la fórmula
+x_i = -2 + (5/n)i de mi libreta
 
 ### suma_riemann(self, n, tipo)
 
@@ -146,18 +144,15 @@ devolver suma * delta
 
 **Validaciones:** las que ya hacen calcular_delta_x y calcular_coordenada, no las repito
 
-**Comprobación:** con f(x) = x + 3, a = -2, b = 3, n = 5 y tipo derecho debe dar exactamente
-20.0 Con n = 10 debe dar 18.75 y con n = 100 debe dar 17.625 Conforme n crece se va pegando
-al 17.5 que saqué a mano
+**Comprobación:** con f(x) = x + 3, a = -2, b = 3 y tipo derecho debe dar 20.0 con n = 5,
+18.75 con n = 10 y 17.625 con n = 100, acercándose al 17.5 que saqué a mano
 
-**Nota del saco el delta de la suma:** multiplico por delta hasta el final en vez de hacerlo
-dentro del ciclo porque es la misma operación repetida n veces Da igual el resultado pero
-son menos cuentas
+**Nota:** el delta se multiplica hasta el final y no dentro del ciclo, porque es la misma
+operación repetida n veces Da igual el resultado pero son menos cuentas
 
 ### detalle_rectangulos(self, n, tipo, cuantos)
 
-**Objetivo:** Darme los primeros rectángulos uno por uno para poder comprobar el resultado a
-mano con lápiz
+**Objetivo:** Darme los primeros rectángulos uno por uno para comprobar el resultado a mano
 
 **Entradas:** n, tipo, y cuantos (cuántos rectángulos quiero ver, por defecto 5)
 

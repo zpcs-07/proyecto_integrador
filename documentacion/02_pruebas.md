@@ -1,13 +1,10 @@
 # Etapa 4 — Pruebas y validación
 
-Todas las pruebas se hicieron corriendo main.py desde la consola, con el entorno virtual
-activado, y metiendo los datos por teclado igual que lo haría cualquiera
+Todas las pruebas se hicieron corriendo main.py desde la consola y metiendo los datos por
+teclado Lo primero que probé fue el ejercicio de mi libreta, porque si eso no cuadra lo demás
+no sirve de nada Las capturas están en evidencias/ejecuciones/
 
-Lo primero que probé fue el ejercicio de mi libreta, porque si eso no cuadra lo demás no
-sirve de nada Las capturas están en evidencias/ejecuciones/
-
-El menú tiene tres opciones: la 1 define la función y el intervalo, la 2 calcula el área y
-la 3 sale Por eso casi todos los casos empiezan igual, con la opción 1
+El menú tiene tres opciones, así que casi todos los casos empiezan igual, con la opción 1
 
 ---
 
@@ -42,11 +39,9 @@ Resultado: 20.0
 
 **Estado:** PASA
 
-**Observaciones:** Esta es la prueba que más me importaba La amplitud 5 es mi paso 1, el
-delta x de 1 es mi paso 2, las coordenadas -1, 0, 1, 2 y 3 son mi paso 3, y las alturas 2,
-3, 4, 5 y 6 son mi paso 4, o sea f(x_i) = 1 + (5/n)i evaluada para i de 1 a 5 La suma
-2+3+4+5+6 = 20 cuadra con la fórmula Los cuatro pasos de mi libreta salen en una sola
-pantalla
+**Observaciones:** Es la prueba que más me importaba Los cuatro pasos de mi libreta salen en
+una sola pantalla: la amplitud 5 es el paso 1, el delta x de 1 es el paso 2, las coordenadas
+-1, 0, 1, 2 y 3 son el paso 3, y las alturas 2, 3, 4, 5 y 6 son el paso 4
 
 ---
 
@@ -71,10 +66,9 @@ tomando el límite
 
 **Estado:** PASA
 
-**Observaciones:** Esta es la prueba que demuestra que el programa está haciendo lo mismo
-que yo hice en la libreta Con n = 10000 va 0.00125 arriba del 17.5, y mientras más suba la
-n más se pega Nunca va a dar 17.5 clavado con el extremo derecho porque el límite es
-cuando n tiende a infinito, y el programa no puede llegar hasta allá
+**Observaciones:** Con n = 10000 va 0.00125 arriba del 17.5, y mientras más suba la n más se
+pega Nunca va a dar 17.5 clavado con el extremo derecho porque el límite es cuando n tiende a
+infinito, y el programa no puede llegar hasta allá
 
 ---
 
@@ -95,9 +89,9 @@ también da bien
 
 **Estado:** PASA
 
-**Observaciones:** Lo escogí porque es un resultado que me sé de memoria y me deja ver si la
-clase sirve para cualquier polinomio y no nada más para el mío También comprueba que
-a_texto escriba bien las potencias, porque imprimió f(x) = x^2 y no f(x) = 1x^2 + 0x + 0
+**Observaciones:** Lo escogí porque el 1/3 me lo sé de memoria y así veo que la clase sirve
+para cualquier polinomio También comprueba a_texto, porque imprimió f(x) = x^2 y no
+f(x) = 1x^2 + 0x + 0
 
 ---
 
@@ -118,9 +112,8 @@ coordenada es x_1 = -2 + 5 = 3, su altura es f(3) = 6, y 6 por 5 da 30
 
 **Estado:** PASA
 
-**Observaciones:** Da bien aunque el número esté lejísimos del 17.5 Y así tiene que ser: con
-un solo rectángulo la aproximación es malísima, pero no está mal calculada Es la diferencia
-entre un error del programa y un resultado feo pero correcto
+**Observaciones:** El número está lejísimos del 17.5 y aun así está bien Con un solo
+rectángulo la aproximación es malísima, pero no está mal calculada
 
 ---
 
@@ -143,8 +136,7 @@ rectángulos de ancho cero
 
 **Observaciones:** El intervalo pasa la validación porque es_intervalo_valido pregunta si a
 es menor o igual que b, y aquí son iguales Luego suma_riemann corta antes del ciclo y
-devuelve 0 directo Si no tuviera ese corte, delta x valdría 0 y daría 0 de todas formas,
-pero dando vueltas de más
+devuelve 0 directo
 
 ---
 
@@ -176,9 +168,8 @@ de Python
 **Estado:** PASA
 
 **Observaciones:** Es la regla R4 En ningún momento salió un traceback ni se cerró el
-programa Después de cada mensaje vuelve a preguntar lo mismo y sigue funcionando normal Se
-ve en evidencias/ejecuciones/validaciones.png, donde después de aguantar los cuatro
-intentos malos acepta el 1 y calcula bien el CP-04
+programa Se ve en evidencias/ejecuciones/validaciones.png, donde después de aguantar los
+cuatro intentos malos acepta el 1 y calcula bien el CP-04
 
 ---
 
@@ -202,9 +193,9 @@ nada definido
 
 **Estado:** PASA
 
-**Observaciones:** Lo importante aquí es la segunda parte No basta con que avise, tiene que
-dejar el objeto integral sin crear Si nada más avisara y guardara el intervalo al revés, la
-opción 2 calcularía un área negativa sin que yo me enterara
+**Observaciones:** Lo importante es la segunda parte No basta con que avise, tiene que dejar
+el objeto integral sin crear Si guardara el intervalo al revés, la opción 2 calcularía un
+área negativa sin que yo me enterara
 
 ---
 
@@ -229,13 +220,10 @@ en medio de los dos
 
 **Estado:** PASA
 
-**Observaciones:** Lo bonito es que el medio da 17.5 clavado con apenas n = 5, que es el
-mismo número que me costó todo el límite en la libreta Pasa porque mi función es una recta:
-con el punto medio, lo que le sobra a un rectángulo por un lado es justo lo que le falta por
-el otro, y se cancela Con la parábola del CP-03 ya no da exacto, nada más se acerca mucho
-
-También se nota que 15.0 y 20.0 quedan a la misma distancia del 17.5, uno 2.5 abajo y el
-otro 2.5 arriba, y que el promedio de los dos da 17.5 Eso es porque la recta sube parejo
+**Observaciones:** El medio da 17.5 clavado con apenas n = 5, el mismo número que me costó
+todo el límite en la libreta Pasa porque mi función es una recta: lo que le sobra a un
+rectángulo por un lado es justo lo que le falta por el otro, y se cancela Con la parábola del
+CP-03 ya no da exacto, nada más se acerca mucho
 
 Están en evidencias/ejecuciones/punto_izquierdo.png y punto_medio.png, y el derecho en
 caso_original.png
@@ -262,10 +250,8 @@ intervalo
 
 **Estado:** PASA
 
-**Observaciones:** Este riesgo lo quité juntando la función y el intervalo en una sola
-opción Antes estaban separados y se podía cambiar la función dejando el intervalo viejo, y
-el programa integraba la función nueva sobre un intervalo que ya no le tocaba, sin avisar
-Ahora no se puede: o defines las dos cosas, o no defines nada
+**Observaciones:** Este riesgo lo quité juntando la función y el intervalo en la misma
+opción Ahora o defines las dos cosas, o no defines nada
 
 ---
 
@@ -298,13 +284,9 @@ Resultado: -11.0
 
 **Estado:** PASA
 
-**Observaciones:** Las cuatro alturas salen negativas porque f(-1.5), f(-0.5), f(0.5) y
-f(1.5) son todos negativos, y la suma -1.75 - 3.75 - 3.75 - 1.75 da -11 Se comprueba en la
-cabeza Escogí este caso porque es el que demuestra que el programa está calculando la
-integral y no el área geométrica: si fuera el área daría +11
-
-También se ve la simetría, el primer rectángulo vale lo mismo que el último y el segundo lo
-mismo que el tercero, que es lo que uno espera de una parábola centrada en el cero
+**Observaciones:** Las cuatro alturas salen negativas y la suma -1.75 - 3.75 - 3.75 - 1.75 da
+-11, que se comprueba en la cabeza Escogí este caso porque demuestra que el programa calcula
+la integral y no el área geométrica: si fuera el área daría +11
 
 ---
 
@@ -314,9 +296,9 @@ mismo que el tercero, que es lo que uno espera de una parábola centrada en el c
 - Pasaron: 10
 - Fallaron: 0
 
-No tuve que corregir nada en esta etapa El único error que encontré en todo el proyecto fue
-el del .0 en a_texto, y ese salió en la etapa 3 cuando revisé la primera clase, antes de
-llegar a las pruebas Está contado en documentacion/03_uso_copilot.md
+No tuve que corregir nada en esta etapa El único error del proyecto fue el del .0 en a_texto,
+y ese salió en la etapa 3, antes de llegar a las pruebas Está contado en
+documentacion/03_uso_copilot.md
 
 ## Capturas
 

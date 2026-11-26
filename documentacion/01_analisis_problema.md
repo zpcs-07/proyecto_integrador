@@ -5,10 +5,9 @@
 **Problema:** Cálculo del área bajo la curva usando la integral definida, resuelta como
 límite de una suma de Riemann
 
-**Asignatura donde lo estudié:** Cálculo Fue uno de los ejemplos que vimos cuando entramos
-al tema de integrales definidas La idea era entender de dónde sale realmente la integral:
-que es una suma de rectangulitos y que entre más rectángulos metes, más se acerca al área
-verdadera
+**Asignatura donde lo estudié:** Cálculo Lo vimos cuando entramos al tema de integrales
+definidas, y la idea era entender que la integral es una suma de rectangulitos y que entre
+más rectángulos metes, más se acerca al área verdadera
 
 La evidencia del ejercicio original está en
 evidencias/problema_original/ejercicio_original_integral_definida.jpg
@@ -21,8 +20,8 @@ Tengo una función f(x) y un intervalo [a, b] Quiero saber cuánta área hay ent
 el eje x y las dos rectas verticales que pasan por a y por b
 
 El método que usé en Cálculo es partir el intervalo en n pedazos iguales, armar un
-rectángulo sobre cada pedazo, sumar todas las áreas de los rectángulos y después hacer que
-n se vaya al infinito:
+rectángulo sobre cada pedazo, sumar todas las áreas y después hacer que n se vaya al
+infinito:
 
 ```
 Área = lim (n→∞) Σ (i=1 hasta n) f(x_i) · Δx
@@ -30,18 +29,11 @@ n se vaya al infinito:
 
 ### Por qué este problema sirve para el proyecto
 
-Porque se parte solo en pedazos que no tienen nada que ver entre sí, y de ahí salen las
-clases: la función nada más necesita saber evaluarse en un punto, y la integral necesita los
-límites y el número de rectángulos Cada una tiene su propia responsabilidad y ninguna se
-mete con la otra
-
-Para armar la suma hay que recorrer los n rectángulos uno por uno, o sea un ciclo, y los
-coeficientes de la función se guardan en una lista También hay varias cosas que validar
-(que n sea entero positivo, que los coeficientes sean números, que el intervalo tenga
-sentido), así que entran condiciones
-
-Y no se reduce a pedir dos números y hacer una operación, que es justo lo que el proyecto
-no acepta
+Porque se parte en dos responsabilidades que no se tocan, y de ahí salen las dos clases: la
+función nada más necesita saber evaluarse en un punto, y la integral necesita los límites y
+el número de rectángulos Además hay que recorrer los n rectángulos uno por uno, o sea un
+ciclo, los coeficientes se guardan en una lista, y hay varias cosas que validar, o sea
+condiciones No se reduce a pedir dos números y hacer una operación
 
 ### Planteamiento original (tal cual lo hice en la libreta)
 
@@ -82,18 +74,17 @@ Y el procedimiento que seguí fueron 4 pasos:
 
 ### Reglas y decisiones que el programa debe respetar
 
-- **R1** Si a es mayor que b, aviso al usuario y no calculo hasta que lo corrija En mi
-  ejercicio el orden importa porque el signo del resultado cambia
+- **R1** Si a es mayor que b, aviso y no calculo hasta que lo corrija El orden importa porque
+  el signo del resultado cambia
 - **R2** Si a es igual a b, el resultado es 0 directo, sin hacer ninguna suma
 - **R3** El resultado puede salir negativo si la curva va por debajo del eje x Eso no es un
-  error del programa, es lo que significa la integral
+  error, es lo que significa la integral
 - **R4** Si el usuario escribe algo que no es número, el programa lo rechaza y vuelve a
   preguntar Nunca debe tronar con un error de Python
-- **R5** n tiene que ser entero y mayor o igual a 1 Si meten 0 o negativo, se rechaza
-- **R6** No se puede calcular nada si todavía no hay función definida ni intervalo El menú
+- **R5** n tiene que ser entero y mayor o igual a 1
+- **R6** No se puede calcular nada si todavía no hay función ni intervalo definidos El menú
   avisa en lugar de dejar que explote
-- **R7** La lista de coeficientes tiene que tener exactamente grado + 1 elementos Si no, se
-  pide de nuevo
+- **R7** La lista de coeficientes tiene que tener exactamente grado + 1 elementos
 
 ## 5. Salidas esperadas
 
@@ -158,11 +149,8 @@ El término 25/(2n) se va a 0 cuando n tiende a infinito, entonces queda:
 
 **Resultado conocido: 35/2 = 17.5 u²**
 
-### Lo que debería dar el programa
-
-Como mi suma usa el extremo derecho, el programa con esta misma función y este mismo
-intervalo tiene que acercarse a 17.5 conforme le suba la n Con n chica el número sale más
-alto y conforme crece se va pegando al 17.5, que es justo lo que dice el límite
+Como mi suma usa el extremo derecho, el programa con esta misma función tiene que acercarse a
+17.5 conforme le suba la n, que es justo lo que dice el límite
 
 ## 7. Alcance de la aplicación
 
@@ -176,7 +164,7 @@ Lo que va a hacer el programa:
 6. Salir de forma ordenada
 
 El menú se queda en tres opciones a propósito: definir, calcular y salir Todo lo demás se
-imprime dentro del cálculo, en el mismo orden de los cuatro pasos de mi procedimiento
+imprime dentro del cálculo, en el orden de los cuatro pasos de mi procedimiento
 
 Lo que **no** va a hacer:
 
@@ -191,23 +179,20 @@ Lo que **no** va a hacer:
 - Entradas, procesos y salidas identificables -> Sí, están en las secciones 3, 4 y 5
 - Reglas, validaciones o decisiones -> Sí, las reglas R1 a R7
 - Viable en consola -> Sí, todo es entrada de números por teclado y salida de texto
-- Al menos dos clases con responsabilidades distintas -> Sí, van dos: FuncionPolinomial representa y evalúa la función, e IntegralDefinida parte el intervalo y hace las sumas de Riemann
+- Al menos dos clases con responsabilidades distintas -> Sí, FuncionPolinomial representa y evalúa la función, e IntegralDefinida parte el intervalo y hace las sumas
 - Ejemplo original verificable -> Sí, el 17.5 de la libreta
-- Variables, operaciones, condiciones, ciclos -> Sí, ciclos para evaluar el polinomio y para acumular la suma de Riemann, y condiciones en todas las validaciones
-- Al menos una lista -> Sí, dos: la lista de coeficientes con la que se arma el polinomio, y la lista de renglones que devuelve detalle_rectangulos, donde cada renglón es a su vez una lista con el número de rectángulo, su x, su altura y su área
+- Variables, operaciones, condiciones, ciclos -> Sí, ciclos para evaluar el polinomio y para acumular la suma, y condiciones en todas las validaciones
+- Al menos una lista -> Sí, dos: la de coeficientes y la que devuelve detalle_rectangulos, donde cada renglón es a su vez una lista
 - main.py y módulos de clases separados -> Sí, main.py con el menú y el paquete clases con un archivo por clase
 
 ## 9. Nota sobre el diseño
 
-Me gustó que los 4 pasos del procedimiento de la libreta se traducen casi uno a uno en
-métodos de la clase IntegralDefinida:
+Los 4 pasos de mi libreta se traducen casi uno a uno en métodos:
 
-| Paso en la libreta | Método en el programa |
-|---|---|
-| Paso 1: definir amplitud A = x_f − x_i | calcular_amplitud() |
-| Paso 2: escoger Δx = A/n | calcular_delta_x(n) |
-| Paso 3: establecer x_i = x_0 + i·Δx | calcular_coordenada(i, n, tipo) |
-| Paso 4: expresar f(x) en términos de x_i | FuncionPolinomial.evaluar(x) |
-| Armar la suma | suma_riemann(n, tipo) |
+- Paso 1, definir la amplitud A = x_f − x_i -> calcular_amplitud()
+- Paso 2, escoger Δx = A/n -> calcular_delta_x(n)
+- Paso 3, establecer x_i = x_0 + i·Δx -> calcular_coordenada(i, n, tipo)
+- Paso 4, expresar f(x) en términos de x_i -> FuncionPolinomial.evaluar(x)
+- Armar la suma -> suma_riemann(n, tipo)
 
 Así cada método tiene un porqué claro y no es código inventado nada más para rellenar

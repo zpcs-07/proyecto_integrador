@@ -13,27 +13,19 @@ punto x
 en un punto y se escribe en texto No sabe nada de integrales, ni de intervalos, ni de
 rectángulos, ni le pide datos al usuario
 
-La separé así porque la función existe sola, sin importar qué le vaya a hacer después Es el
-paso 4 de mi procedimiento (expresar f(x) en términos de x_i), y ese paso no necesita saber
-de dónde salió la x
+Es el paso 4 de mi procedimiento, expresar f(x) en términos de x_i, y ese paso no necesita
+saber de dónde salió la x
 
 ## 2. Atributos
 
 - coeficientes -> list[float] -> Los coeficientes del polinomio, del término de mayor potencia al independiente -> Se recibe en el constructor, no tiene valor por defecto
 - grado -> int -> El grado del polinomio -> Se calcula solo en el constructor como len(coeficientes) - 1
 
-Ejemplo de cómo se guarda f(x) = x + 3:
+Así se guardan dos ejemplos:
 
 ```
-coeficientes = [1, 3]
-grado = 1
-```
-
-Y f(x) = 2x² - 3x + 1 se guardaría así:
-
-```
-coeficientes = [2, -3, 1]
-grado = 2
+f(x) = x + 3           ->  coeficientes = [1, 3],     grado = 1
+f(x) = 2x² - 3x + 1    ->  coeficientes = [2, -3, 1], grado = 2
 ```
 
 ## 3. Constructor __init__
@@ -43,14 +35,13 @@ grado = 2
 **Qué hace:**
 
 1. Revisa que coeficientes sea una lista y que no esté vacía Si está mal, lanza ValueError
-2. Revisa que todos los elementos sean int o float Si alguno no lo es, lanza ValueError
-   Los booleanos tampoco se aceptan, aunque en Python True sea un int por dentro Si dejara
-   pasar True, el polinomio se evaluaría como si valiera 1 y nadie se daría cuenta
+2. Revisa que todos los elementos sean int o float Si alguno no lo es, lanza ValueError Los
+   booleanos tampoco, porque en Python True vale 1 y se colaría sin que nadie se enterara
 3. Guarda la lista en self.coeficientes
 4. Calcula self.grado como len(self.coeficientes) - 1
 
-**Por qué valido aquí:** Porque si dejo pasar una lista con basura, el error va a salir
-después dentro del ciclo de la suma de Riemann y ahí no voy a entender de dónde vino
+**Por qué valido aquí:** Si dejo pasar una lista con basura, el error va a salir después
+dentro del ciclo de la suma y ahí ya no se entiende de dónde vino
 
 ## 4. Métodos
 
@@ -110,9 +101,8 @@ devolver "f(x) = " mas lo unido
 **Validaciones:**
 
 - Si todos los coeficientes son 0, devuelve f(x) = 0
-- Si un coeficiente viene como float pero su valor es entero, se escribe sin el .0, o sea
-  que 3.0 se escribe 3 Esto importa porque main.py pide los coeficientes con pedir_decimal
-  y siempre llegan como float, y la función se tiene que ver igual que en mi libreta
+- Si un coeficiente viene como float pero vale entero, se escribe sin el .0, o sea que 3.0 se
+  escribe 3 Importa porque main.py los pide con pedir_decimal y siempre llegan como float
 - Los coeficientes que sí tienen decimales se escriben completos, como 2.5
 
 **Comprobación:** con [1, 3] debe dar f(x) = x + 3, con [1.0, 3.0] también debe dar

@@ -9,10 +9,10 @@ Proyecto Integrador de Programación II
 
 **Asignatura original:** Cálculo
 
-Es un ejercicio que resolví en la libreta cuando vimos integrales definidas Lo que se pedía
-era calcular la integral de -2 a 3 de (x + 3) dx, pero sin usar la antiderivada: había que
-partir el intervalo en n rectángulos, sumarlos todos y tomar el límite cuando n tiende a
-infinito El resultado que me dio fue 35/2, o sea 17.5 u²
+Es un ejercicio que resolví en la libreta cuando vimos integrales definidas Había que
+calcular la integral de -2 a 3 de (x + 3) dx partiendo el intervalo en n rectángulos,
+sumarlos todos y tomar el límite cuando n tiende a infinito El resultado fue 35/2, o sea
+17.5 u²
 
 La foto del ejercicio original está en
 evidencias/problema_original/ejercicio_original_integral_definida.jpg
@@ -37,8 +37,7 @@ polinomio, cualquier intervalo y cualquier cantidad de rectángulos:
   comprobar el resultado a mano
 - Valida todo lo que se escribe, así que no truena aunque le metas texto donde van números
 
-Lo que no hace: funciones que no sean polinomios, integrales impropias ni gráficas El
-cálculo exacto por antiderivada tampoco, porque el chiste es trabajar con la definición
+Lo que no hace: funciones que no sean polinomios, integrales impropias ni gráficas
 
 ## Las clases
 
@@ -56,21 +55,18 @@ Representa la función y sabe evaluarse en un punto No sabe nada de integrales
 Vive en clases/integral_definida.py
 
 Parte el intervalo en rectángulos y los suma Guarda adentro un objeto FuncionPolinomial, y
-cuando necesita la altura de un rectángulo se la pide a él en vez de calcularla por su
-cuenta
+cuando necesita la altura de un rectángulo se la pide a él
 
 - Atributos: funcion, limite_inferior y limite_superior
 - Métodos: calcular_amplitud(), calcular_delta_x(n), calcular_coordenada(i, n, tipo),
   suma_riemann(n, tipo), detalle_rectangulos(n, tipo, cuantos) y es_intervalo_valido()
 
-Las especificaciones completas de las dos, con atributos, algoritmos y reglas, están en la
-carpeta especificaciones/
+Las especificaciones completas de las dos están en la carpeta especificaciones/
 
 ## Requisitos
 
 - Python 3.10 o más nuevo
-- Nada más La aplicación usa solo la biblioteca estándar, por eso requirements.txt no lista
-  ninguna dependencia
+- Nada más, solo biblioteca estándar, por eso requirements.txt no lista dependencias
 
 ## Instalación
 
@@ -119,28 +115,18 @@ Rectangulo 5 - x: 3.0 - altura: 6.0 - area: 6.0
 Resultado: 20.0
 ```
 
-Las alturas 2, 3, 4, 5 y 6 son exactamente f(x_i) = 1 + (5/n)i evaluada para i de 1 a 5, que
-es lo que escribí en la libreta La suma 2+3+4+5+6 da 20
+Las alturas 2, 3, 4, 5 y 6 son f(x_i) = 1 + (5/n)i evaluada para i de 1 a 5, igual que en la
+libreta, y 2+3+4+5+6 da 20
 
-Si se sube la n, el resultado se va acercando al 17.5 del ejercicio original:
-
-```
-n = 10     ->  18.75
-n = 100    ->  17.625
-n = 1000   ->  17.5125
-n = 10000  ->  17.50125
-```
-
-Nunca va a dar 17.5 clavado con el extremo derecho, porque el límite es cuando n tiende a
-infinito Pero con el punto medio sí da exacto desde n = 5, porque la función es una recta
+Si se sube la n el resultado se acerca al 17.5 del ejercicio original: con n = 100 da 17.625
+y con n = 10000 da 17.50125 Nunca va a dar 17.5 clavado con el extremo derecho porque el
+límite es cuando n tiende a infinito, pero con el punto medio sí da exacto desde n = 5
+porque la función es una recta
 
 ## Pruebas
 
-Son 10 casos documentados en documentacion/02_pruebas.md, con sus entradas, lo que se
-esperaba, lo que salió y las observaciones Incluyen el ejercicio original, otras funciones,
-casos límite, entradas inválidas y una función que da resultado negativo
-
-Las capturas de las ejecuciones están en evidencias/ejecuciones/
+Son 10 casos documentados en documentacion/02_pruebas.md, con sus entradas, lo esperado, lo
+obtenido y las observaciones Las capturas están en evidencias/ejecuciones/
 
 ## Documentación
 

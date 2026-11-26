@@ -3,12 +3,11 @@
 ## 1. Qué hace main.py
 
 Es el único archivo que habla con el usuario Muestra el menú, pide los datos, crea los
-objetos, les llama sus métodos e imprime lo que devuelven
+objetos, les llama sus métodos e imprime lo que devuelven Las clases no usan input ni print
+nunca
 
-Las clases no usan input ni print nunca Toda la conversación con la persona pasa por aquí
-
-El menú es corto a propósito: nada más lo necesario para resolver el ejercicio Definir,
-calcular y salir
+El menú es corto a propósito: nada más lo necesario para resolver el ejercicio, o sea
+definir, calcular y salir
 
 ## 2. El menú
 
@@ -19,18 +18,17 @@ calcular y salir
 3. Salir
 ```
 
-Lo dejé sin marcos de signos de igual a propósito El menú se reimprime cada vuelta del
-ciclo, y con los marcos ocupaba 7 renglones cada vez En cuatro vueltas eran 28 renglones de
-puro adorno, y las capturas de pantalla no alcanzaban a mostrar el cálculo completo Así
-ocupa 4 y cabe todo
+Lo dejé sin marcos a propósito El menú se reimprime cada vuelta del ciclo, y con marcos
+ocupaba 7 renglones cada vez, así que las capturas no alcanzaban a mostrar el cálculo
+completo
 
 ## 3. Objetos que se crean
 
 - funcion -> FuncionPolinomial -> Empieza valiendo None y se crea en la opción 1
 - integral -> IntegralDefinida -> Empieza valiendo None y se crea también en la opción 1, después de leer los límites
 
-**Por qué empiezan en None:** porque al abrir el programa todavía no hay nada definido Si el
-usuario se va directo a la opción 2, el programa tiene que avisarle en vez de tronar
+**Por qué empiezan en None:** al abrir el programa no hay nada definido, así que si el
+usuario se va directo a la opción 2 hay que avisarle en vez de tronar
 
 ## 4. Funciones de apoyo (no son métodos, van sueltas en main.py)
 
@@ -100,8 +98,8 @@ El 1 es derecho porque es el que usé en el ejercicio original, así queda de pr
    que b, deja integral en None y regresa al menú
 10. Si está bien, confirma el intervalo
 
-Junté la función y el intervalo en una sola opción porque siempre van juntos: no sirve de
-nada tener una sin el otro
+Junté la función y el intervalo en una sola opción porque no sirve de nada tener una sin el
+otro
 
 ### Opción 2 - Calcular el área
 
@@ -115,14 +113,12 @@ nada tener una sin el otro
    imprimiendo cada renglón con su número de rectángulo, su x, su altura y su área
 7. Llama resultado = integral.suma_riemann(n, tipo) y lo imprime redondeado a 6 decimales
 
-Esta opción imprime los cuatro pasos de mi procedimiento en una sola pantalla, en el mismo
-orden que los hice en la libreta Por eso no necesito opciones separadas para ver la amplitud
-o los rectángulos
+Esta opción imprime los cuatro pasos de mi procedimiento en una sola pantalla, en el orden de
+la libreta Por eso no necesito opciones separadas para la amplitud o los rectángulos
 
 Los rectángulos se muestran hasta los primeros 5 aunque n sea enorme, porque con eso basta
-para comprobar a mano que el programa va bien y no me llena la pantalla
-
-El redondeo se hace aquí al imprimir, nunca dentro de la clase
+para comprobar a mano y no me llena la pantalla El redondeo se hace al imprimir, nunca dentro
+de la clase
 
 ### Opción 3 - Salir
 
@@ -161,8 +157,8 @@ imprimir despedida
   input directo para números
 - **RM6** No se agrega ninguna opción de cálculo exacto por antiderivada El programa trabaja
   solo con sumas de Riemann
-- **RM7** No se agregan opciones de historial, de guardar en archivo ni de ver la función
-  por separado El menú se queda en tres
+- **RM7** No se agregan opciones de guardar en archivo ni de ver la función por separado El
+  menú se queda en tres
 
 ## 9. Cómo colaboran las dos clases
 
@@ -175,6 +171,5 @@ main.py
    |-- crea --> IntegralDefinida (guarda la funcion y los limites)
 ```
 
-El objeto integral trae adentro al objeto funcion Cuando integral necesita la altura de un
-rectángulo no la calcula, se la pide a funcion Esa es la colaboración entre las dos clases y
-es lo que tengo que poder explicar
+El objeto integral trae adentro al objeto funcion Cuando necesita la altura de un rectángulo
+no la calcula, se la pide a funcion Esa es la colaboración entre las dos clases
